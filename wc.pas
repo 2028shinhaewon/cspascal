@@ -1,0 +1,25 @@
+program wc;
+uses copyunit;
+var
+  nc, nl, nw: integer;
+  c : character;
+  inword : boolean;
+begin
+  nc := 0;
+  nl := 0;
+  nw := 0;
+  while(getc(c) <> endfile) do
+  begin
+    nc := nc + 1;
+    if c = newline then nl := nl + 1;
+    if (c = blank) or (c = newline) or (c = tab) then inword := false
+    else if  inword = false then
+    begin
+      nw := nw + 1;
+      inword := true;
+    end;
+  end;
+  writeln('number of characters: ', nc);
+  writeln('number of lines: ', nl);
+  writeln('number of words: ', nw);
+end.
